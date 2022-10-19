@@ -1,0 +1,36 @@
+{
+    "name": "theriftlab/laravel-mfa",
+    "description": "Bare-bones email-based 2FA using signed links.",
+    "autoload": {
+        "psr-4": {
+            "Mfa\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Robert Davies",
+            "email": "robert@theriftlab.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "illuminate/broadcasting": "^8.6|^9.0",
+        "illuminate/bus": "^8.6|^9.0",
+        "illuminate/config": "^8.6|^9.0",
+        "illuminate/database": "^8.6|^9.0",
+        "illuminate/events": "^8.6|^9.0",
+        "illuminate/http": "^8.6|^9.0",
+        "illuminate/mail": "^8.6|^9.0",
+        "illuminate/queue": "^8.6|^9.0",
+        "illuminate/routing": "^8.6|^9.0",
+        "illuminate/session": "^8.6|^9.0",
+        "illuminate/support": "^8.6|^9.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mfa\\Providers\\MfaAuthServiceProvider"
+            ]
+        }
+    }
+}
