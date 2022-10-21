@@ -7,6 +7,9 @@ return [
     // How many minutes the signed link lasts before timing out
     'link_timeout' => env('MFA_LINK_TIMEOUT', 60),
 
+    // Whether using the link invalidates it
+    'link_single_use' => env('MFA_LINK_SINGLE_USE', true),
+
     // How many chars long the generated code should be
     'code_length' => env('MFA_CODE_LENGTH', 32),
 

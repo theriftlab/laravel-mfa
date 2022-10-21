@@ -56,9 +56,11 @@ class MfaCode extends Model
     {
         // Ensure this MFA code is unused and unexpired
         static::addGlobalScope('valid', function (Builder $builder) {
-            $builder
-                ->whereNull('used_at')
-                ->where('updated_at', '>', now()->subMinutes(config('mfa.link_timeout')));
+            if (config('mfa.link_single_use')) {
+                $builder->whereNull('used_at');
+            }
+
+            $builder->where('updated_at', '>', now()->subMinutes(config('mfa.link_timeout')));
         });
     }
 }
