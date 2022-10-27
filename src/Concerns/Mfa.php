@@ -5,6 +5,7 @@ namespace Mfa\Concerns;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Str;
+use Mfa\Contracts\MfaUser;
 use Mfa\Models\MfaCode;
 
 trait Mfa
@@ -61,5 +62,18 @@ trait Mfa
     public function checkMfaCode(string $code): bool
     {
         return $this->mfaCode?->code === $code;
+    }
+
+    /**
+     * The "booted" method of the model.
+     * Delete the MFA code record on user deletion.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::deleted(function (MfaUser $user) {
+            $user->mfaCode?->delete();
+        });
     }
 }
